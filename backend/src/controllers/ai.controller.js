@@ -1,12 +1,12 @@
 import aiService from "../services/ai.service.js";
 
-export const getResponse = async(req,res) => {
-    const prompt = req.query.prompt;
+export const getReview = async(req,res) => {
+    const code = req.body.code;
 
-    if(!prompt) {
+    if(!code) {
         return res.status(400).send("Prompt is required");
     }
-    const response = await aiService(prompt);
+    const response = await aiService(code);
 
     res.send(response);
 }
