@@ -1,0 +1,99 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root{
+  height: 100%;
+  width: 100%;
+}
+
+main{
+  height: 100%;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+main .left, main .right{
+  height: 100%;
+  flex-basis: 50%;
+  border-radius: 0.7rem;
+
+}
+
+main .left {
+  background-color: #000000;
+  position: relative;
+}
+
+.left .code,
+.left pre,
+.left pre code {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  border-radius: 0.7rem;
+  background-color: #1a1919;
+}
+
+main .left .review{
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: #bcbbfc;
+  color: #000000;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+  font-weight: 500;
+  user-select: none;
+  border-radius: 0.7rem;
+}
+
+.right {
+  padding: 20px;
+  color: #fff;
+  text-align: left;   /* ✅ force fix */
+  font-size: 1rem;
+  overflow-y: auto;
+  background: #0d1117;
+}
+
+.right h2 {
+  color: #ffcc00;
+}
+
+.right pre {
+  background: #1e1e1e;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+.right code {
+  color: #00ffcc;
+}
+
+.markdown-body {
+  background: transparent !important;
+  color: #c9d1d9;
+}
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column; /* This stacks them vertically */
+  }
+  
+  .left {
+    /* .left will now be on top because it appears first in the HTML */
+    width: 100%;
+  }
+
+  .right {
+    /* .right will be at the bottom */
+    width: 100%;
+  }
+}
