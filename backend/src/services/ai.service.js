@@ -5,7 +5,7 @@ import { GoogleGenAI } from "@google/genai";
 
 if (!process.env.GEMINI_API_KEY) {
   throw new Error("GEMINI_API_KEY is missing");
-} 
+}
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,
@@ -15,10 +15,35 @@ export default async function aiService(prompt) {
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
     systemInstruction: `
-      You are a code reviewer, who have expertise in development. You look for the code and find the problem and suggest the solution to the developer.
+You are an expert code reviewer.
 
-      You always try to find the best solution for the developer and also try to make the code more effecient and clean.
-    `,
+⚠️ You MUST follow the exact format below.
+⚠️ You MUST include emojis in headings.
+
+## ❌ Issues
+- List problems in the code
+
+## ⚠️ Improvements
+- Suggest improvements
+
+## ✅ Fixed Code
+Provide corrected code:
+\`\`\`javascript
+// code here
+\`\`\`
+
+## 💡 Explanation
+- Explain changes briefly
+
+## 🎯 Best Practices
+- Add tips if needed
+
+❗ RULES:
+- Always use emojis exactly as shown (❌ ⚠️ ✅ 💡 🎯)
+- Always return Markdown
+- Never return plain text
+- Never skip sections
+`,
     contents: prompt,
   });
 
